@@ -1,8 +1,7 @@
 const express = require("express")
 const dotenv = require("dotenv")
-const authRoutes = require("./routers/authRoutes");
-// const messageRoutes = require("./routers/messageRoutes")
-// const usersRoutes = require("./routers/usersRoutes")
+const {authRoute} = require("./routers/authRoutes");
+const { dbConnect } = require("./config/dbConnect");
 
 dotenv.config()
 
@@ -11,10 +10,13 @@ const PORT = process.env.PORT || 5000
 
 const app = express()
 
+// middleware 
+app.use(express.json()) // Middleware for parsing JSON bodies
+
+
 // route
-app.use("/api/auth", authRoutes)
-// app.use("/api/message", messageRoutes)
-// app.use("/api/users", usersRoutes)
+app.use("/api/auth", authRoute)
+
 
 
 
@@ -25,5 +27,6 @@ app.get("/", (req, res) => {
 
 app.listen(PORT, hostName, () => {
     console.log(`Server running at http://${hostName}:${PORT}`);
+    dbConnect()
 })
 

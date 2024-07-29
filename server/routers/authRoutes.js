@@ -1,5 +1,5 @@
 const express = require("express");
-const { registerController, loginController, logoutController, logoutFromAllDeviceController, forgetPasswordController } = require("../controllers/authController");
+const { registerController, loginController } = require("../controllers/authController");
 
 
 // Router level middleware
@@ -12,4 +12,4 @@ route.post("/register", registerController)
 route.post("/login", loginController)
 
 
-module.exports = route 
+module.exports = { authRoute: route } 
