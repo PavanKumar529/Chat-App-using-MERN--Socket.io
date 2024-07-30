@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
+const dotenv = require("dotenv")
 
-const url = "mongodb://127.0.0.1:27017/Chat-App";
+dotenv.config()
+
+// const url = "mongodb://127.0.0.1:27017/Chat-App";
+const url = `${process.env.MONGO_DB_URL}/${process.env.DB_NAME}`
 
 const dbConnect = async() => {
     try {
