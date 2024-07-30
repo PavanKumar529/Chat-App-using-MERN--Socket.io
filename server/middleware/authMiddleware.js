@@ -2,11 +2,12 @@ const jwt = require("jsonwebtoken")
 
 const authMiddleware = (req, res, next) => {
     try {
-        const authHeader = req.headers.authorization
-        if (!authHeader) {
-            return res.status(401).send({ message: "Unauthorized User", success: false });
-          }      
-        const token = authHeader.split(" ")[1];
+        // const authHeader = req.headers.authorization
+        // if (!authHeader) {
+        //     return res.status(401).send({ message: "Unauthorized User", success: false });
+        //   }      
+        // const token = authHeader.split(" ")[1];
+        const token = req.cookies.auth_token
         // console.log(token);
         if(!token) 
             return res.status(401).send({ message: "Unauthrized User, token not found", success: false })

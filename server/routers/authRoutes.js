@@ -1,5 +1,5 @@
 const express = require("express");
-const { registerController, loginController, getUser, updateUser, deleteUser } = require("../controllers/authController");
+const { registerController, loginController, getUser, updateUser, deleteUser, logoutController } = require("../controllers/authController");
 const authMiddleware = require("../middleware/authMiddleware");
 
 
@@ -21,5 +21,7 @@ route.put("/update-user", authMiddleware, updateUser)
 //deleteUser
 route.delete("/delete-user", authMiddleware, deleteUser)
 
+// Logout || POST
+route.post("/logout", logoutController)
 
 module.exports = { authRoute: route } 

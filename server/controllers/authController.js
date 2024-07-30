@@ -64,6 +64,7 @@ const loginController = async(req, res) => {
                 else {
                     // let token = jwt.sign(existingUser._id.toString(), process.env.JWT_SECRETE_KEY, { expiresIn: "7d" })
                     let token = jwt.sign({ userId: existingUser._id }, process.env.JWT_SECRET_KEY, { expiresIn: "7d" })
+                    res.cookie("auth_token", token, {maxAge: 1000 * 60 * 60 * 24 * 7, httpOnly: true })
                     res.status(200).send({ message: "User successfully Login", token, success: true })
                 }
             }
@@ -77,6 +78,19 @@ const loginController = async(req, res) => {
         return res.status(500).send({ message: "Internal Server Error", success: false });
     }
 };
+
+
+
+const logoutController = async(req, res) => {
+    try {
+        res.clearCookie("auth_token")
+        return res.status(200).send({ message: "Logout Successfull" }) 
+    }
+    catch(error) {
+        console.log(error);
+        return res.status(500).send({ error: "Something Went Wrong", errMsg: error.message })
+    }
+}
 
 // Get User details
 const getUser = async(req, res) => {
@@ -143,6 +157,7 @@ const deleteUser = async (req, res) => {
 module.exports = {
   registerController,
   loginController,
+  logoutController,
   getUser,
   updateUser,
   deleteUser
