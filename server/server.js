@@ -14,7 +14,7 @@ const app = express()
 app.use(express.json()) // Middleware for parsing JSON bodies
 
 
-// route
+// Routes
 app.use("/api/auth", authRoute)
 
 
