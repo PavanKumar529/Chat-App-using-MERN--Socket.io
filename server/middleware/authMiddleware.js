@@ -12,8 +12,8 @@ const authMiddleware = (req, res, next) => {
         if(!token) 
             return res.status(401).send({ message: "Unauthrized User, token not found", success: false })
         const { userId } = jwt.verify(token, process.env.JWT_SECRET_KEY)
-        // if(!userId) 
-        //     return res.status(401).send({ message: "Invalid Token", success: false })
+        if(!userId) 
+            return res.status(401).send({ message: "Invalid Token", success: false })
         req.userId = userId
         next()
     }

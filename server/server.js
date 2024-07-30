@@ -3,6 +3,7 @@ const dotenv = require("dotenv")
 const cookieParser = require("cookie-parser");
 const {authRoute} = require("./routers/authRoutes");
 const { dbConnect } = require("./config/dbConnect");
+const otpRoute = require("./routers/otpRoutes");
 
 dotenv.config()
 
@@ -18,6 +19,7 @@ app.use(cookieParser())
 
 // Routes
 app.use("/api/auth", authRoute)
+app.use("/api/otp", otpRoute)
 
 
 

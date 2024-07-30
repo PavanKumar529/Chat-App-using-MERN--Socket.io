@@ -9,9 +9,9 @@ dotenv.config()
 // this is for registration
 const registerController = async(req, res) => {
     try {
-        let { fullName, username, password, confirmPassword, gender } = req.body
+        let { fullName, username, password, confirmPassword, email, gender } = req.body
 
-        if(!fullName || !username || !password || !confirmPassword || !gender) 
+        if(!fullName || !username || !password || !confirmPassword || !email || !gender) 
             return res.status(400).send({ message: "Please provide all details", success: false });
         if(password !== confirmPassword) 
             return res.status(400).send({ message: "Passwords don't match", success: false })
@@ -32,6 +32,7 @@ const registerController = async(req, res) => {
                 fullName,
                 username,
                 password: hashedPassword,
+                email,
                 gender,
                 profilePic
             })
@@ -69,7 +70,7 @@ const loginController = async(req, res) => {
                 }
             }
             else {
-                return res.status(400).send({ message: "Invalid user data,", success: false })
+                return res.status(400).send({ message: "User not found, Please register,", success: false })
             }            
         }
     }
@@ -95,9 +96,8 @@ const logoutController = async(req, res) => {
 // Get User details
 const getUser = async(req, res) => {
     try {
-        const userId = req.userId
-        console.log("Extracted userId:", userId);
-
+        const { userId } = req
+        // console.log("Extracted userId:", userId);
         let existingUser = await userModel.findById(userId).select("-_id -password -__v")
         if(!existingUser) {
             return res.status(401).send({ message: "User not found", success: false });
@@ -115,22 +115,11 @@ const updateUser = async (req, res) => {
     try {
         const userId = req.userId
         const data = req.body
-       // Log userId and data
-       console.log("UserId:", userId);
-       console.log("Data to be updated:", data);
+
         // Update user
+        const updatedUser = await userModel.findByIdAndUpdate(userId, { $set: { ...data } }, { new: true }).select("-_id -password -__v")
 
-        // // Check for empty data
-        // if (Object.keys(data).length === 0) {
-        //     return res.status(400).send({ message: "No data provided for update" });
-        // }
-
-        const response = await userModel.findByIdAndUpdate(userId, { $set: { ...data } }).select("-_id -password -__v")
-
-        // Log response
-        console.log("Database Update Response:", response);
-
-        if (!response) {
+        if (!updatedUser) {
             return res.status(404).send({ message: "User not found", userData: null, success: false });
         }
         
