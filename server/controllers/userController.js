@@ -2,7 +2,7 @@ const { userModel } = require("../models/userModel");
 
 const getUsersForSidebar = async(req, res) => {
     try {
-
+        // Fetching Logged-in User ID:
         const loggedInUserId = req.userId
 
         // const allUsers = await userModel.find()  // userId :user.id
