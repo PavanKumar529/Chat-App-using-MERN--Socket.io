@@ -5,6 +5,7 @@ const {authRoute} = require("./routers/authRoutes");
 const { dbConnect } = require("./config/dbConnect");
 const otpRoute = require("./routers/otpRoutes");
 const messageRouter = require("./routers/messageRouter");
+const userRouter = require("./routers/userRoute");
 
 dotenv.config()
 
@@ -22,7 +23,7 @@ app.use(cookieParser())
 app.use("/api/auth", authRoute)
 app.use("/api/otp", otpRoute)
 app.use("/api/messages", messageRouter)
-
+app.use("/api/users", userRouter)
 
 
 
