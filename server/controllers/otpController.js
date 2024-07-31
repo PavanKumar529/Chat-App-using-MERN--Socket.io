@@ -46,7 +46,7 @@ const otpGenerateController = async (req, res) => {
             // Team Pavan Kumar` 
             html: `
                 <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
-                    <h2>Dear ${user.name},</h2>
+                    <h2>Dear ${user.username},</h2>
                     <p>Please use the following One Time Password to verify your login ID and create your profile.</p>
                     <p><strong>OTP: ${otp}</strong></p>
                     <p>Please enter the OTP to proceed. OTP is valid for 5 minutes. Do not share your OTP with anyone.</p>
