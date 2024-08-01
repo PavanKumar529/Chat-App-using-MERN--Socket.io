@@ -6,8 +6,9 @@ import Register from './pages/signup/Register'
 function App() {
   return (
     <div className='p-4 h-screen flex items-center justify-center'>
-      <Register />
+      {/* <Register />
       <Login />
+      <Home /> */}
       <Home />
     </div>
   )
