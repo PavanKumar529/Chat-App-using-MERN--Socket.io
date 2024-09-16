@@ -1,7 +1,7 @@
 import './App.css'
 import Home from './pages/home/Home'
-import Login from './pages/signin/Login'
-import Register from './pages/signup/Register'
+// import Login from './pages/signin/Login'
+// import Register from './pages/signup/Register'
 
 function App() {
   return (
