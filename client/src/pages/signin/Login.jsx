@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 const Login = () => {
   return (
@@ -26,9 +27,9 @@ const Login = () => {
 
 
             <div className="flex justify-between items-center mt-4">
-              <a className="text-sm text-blue-600 hover:underline" href="#" >
+              <Link to="/signup" className="text-sm text-blue-600 hover:underline" >
                 {"Don't"} have an account?
-              </a>
+              </Link>
             </div>
 
             <div className='mt-6'>

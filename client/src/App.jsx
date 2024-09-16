@@ -1,7 +1,8 @@
 import './App.css'
 import Home from './pages/home/Home'
-// import Login from './pages/signin/Login'
-// import Register from './pages/signup/Register'
+import {Route, Routes } from 'react-router-dom'
+import Login from './pages/signin/Login'
+import Register from './pages/signup/Register'
 
 function App() {
   return (
@@ -9,7 +10,13 @@ function App() {
       {/* <Register />
       <Login />
       <Home /> */}
-      <Home />
+      {/* <Home /> */}
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path='/signin' element={<Login />} />
+        <Route path='/signup' element={<Register />} />
+      </Routes>
     </div>
   )
 }
